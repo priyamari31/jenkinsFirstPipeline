@@ -3,7 +3,7 @@ pipeline {
      stages {
        stage ('Back-End') {
          agent {
-             docker { image 'openjdk:17-alpine' }
+             docker { image 'maven:3.8.1-adoptopenjdk-11' }
          } 
         stage ('checkout') {
           steps {
@@ -19,11 +19,7 @@ pipeline {
           steps {
             sh 'java java-helloworld'
           }
-        }
-         steps {
-           sh 'mvn --version' 
-         }
-  
+        }  
      }
      stage ('Front-End') {
        agent {
@@ -44,10 +40,6 @@ pipeline {
             sh 'node nodejs.js'
           }
         }
-  
-       steps {
-         sh 'node --version'      
-       }
      }
   }
 }
