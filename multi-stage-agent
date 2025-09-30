@@ -4,15 +4,47 @@ pipeline {
        stage ('Back-End') {
          agent {
              docker { image 'maven:3.8.1-adoptopenjdk-11' }
-         }
+         } 
+        stage ('checkout') {
+          steps {
+            git 'https://github.com/priyamari31/jenkinsFirstPipeline'
+          }
+        }
+        stage ('Compile') {
+          steps {
+            sh 'javac java-helloworld.java'
+          }
+        }
+        stage ('Run') {
+          steps {
+            sh 'java java-helloworld'
+          }
+        }
          steps {
-           sh 'mvn --version'
+           sh 'mvn --version' 
          }
+  
      }
      stage ('Front-End') {
        agent {
           docker { image 'node:16-alpine' }
        }
+        stage ('checkout') {
+          steps {
+            git 'https://github.com/priyamari31/jenkinsFirstPipeline'
+          }
+        }
+        stage ('Install') {
+          steps {
+            sh 'npm install'
+          }
+        }
+        stage ('Run') {
+          steps {
+            sh 'node nodejs.js'
+          }
+        }
+  
        steps {
          sh 'node --version'      
        }
