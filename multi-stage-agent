@@ -8,7 +8,7 @@ pipeline {
       stages{
         stage ('checkout') {
           steps {
-            git 'https://github.com/priyamari31/jenkinsFirstPipeline'
+            git branch: 'main', url: 'https://github.com/priyamari31/jenkinsFirstPipeline'
           }
         }
         stage ('Compile') {
@@ -30,7 +30,7 @@ pipeline {
 stages{
   stage ('checkout') {
           steps {
-            git 'https://github.com/priyamari31/jenkinsFirstPipeline'
+            git branch: 'main', url: 'https://github.com/priyamari31/jenkinsFirstPipeline'
           }
         }
         stage ('Install') {
